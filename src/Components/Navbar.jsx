@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const NavContainer = styled.nav`
@@ -15,20 +16,34 @@ const NavTitle = styled.h1`
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  font-size: 2rem;
+  margin: 1rem;
 `;
 
 const NavMenu = styled.ul`
   display: flex;
+  align-items: center;
+  justify-content: center;
   list-style: none;
 `;
 
 const NavItem = styled.li`
-  margin-left: 20px;
+  margin: 1rem;
+`;
+
+const NavLink = styled(Link)`
+  text-decoration: none;
+
+  &:visited {
+    color: white;
+  }
 `;
 
 const NavCartIcon = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
+  margin: 1rem;
 `;
 
 const Navbar = () => {
@@ -36,8 +51,12 @@ const Navbar = () => {
     <NavContainer>
       <NavTitle>Shopping</NavTitle>
       <NavMenu>
-        <NavItem>Home</NavItem>
-        <NavItem>Shop</NavItem>
+        <NavItem>
+          <NavLink to="/">Home</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/shop">Shop</NavLink>
+        </NavItem>
         <NavCartIcon>Placeholder</NavCartIcon>
       </NavMenu>
     </NavContainer>

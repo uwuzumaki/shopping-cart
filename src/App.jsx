@@ -3,12 +3,13 @@ import { useState } from "react";
 import "./App.css";
 import Homepage from "./Components/Homepage";
 import Navbar from "./Components/Navbar";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <>
       <Navbar />
-      <Homepage />
+      <Outlet />
     </>
   );
 }
