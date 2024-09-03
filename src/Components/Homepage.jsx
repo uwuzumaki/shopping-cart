@@ -6,19 +6,23 @@ import hero3 from "../assets/hero3.jpg";
 
 const Hero = styled.div`
   width: 100%;
-  height: 80vh;
+  height: 90vh;
+  overflow: hidden;
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
 `;
 
 const HeroImage = styled.img`
-  visibility: ${(props) => (props.$active ? "visible" : "hidden")};
+  grid-column: 1;
+  grid-row: 1;
+
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: ${(props) => props.index};
-  opacity: ${(props) => props.$active};
-
-  transition: visibility 0.5s, opacity 2s ease-in-out;
+  transition: opacity 2s ease-in-out;
+  opacity: ${({ $isActive }) => ($isActive ? 1 : 0)};
 `;
 
 const Homepage = () => {
@@ -41,7 +45,7 @@ const Homepage = () => {
           <HeroImage
             key={index}
             src={image}
-            $active={index === currentImage ? 1 : 0}
+            $isActive={index === currentImage}
           />
         ))}
       </Hero>
