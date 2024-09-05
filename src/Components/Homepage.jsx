@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import hero1 from "../assets/hero1.jpg";
 import hero2 from "../assets/hero2.jpg";
@@ -25,9 +26,34 @@ const HeroImageWrapper = styled.div`
   grid-template-rows: 1fr;
 `;
 
-//Photo by <a href="https://unsplash.com/@brookecagle?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Brooke Cagle</a> on <a href="https://unsplash.com/photos/woman-wearing-red-long-sleeved-shirt-standing-near-white-painted-wall-z1B9f48F5dc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-//Photo by <a href="https://unsplash.com/@sadswim?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">ian dooley</a> on <a href="https://unsplash.com/photos/woman-standing-near-pink-concrete-wall-during-daytime-TT-ROxWj9nA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-//Photo by <a href="https://unsplash.com/@nordwood?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">NordWood Themes</a> on <a href="https://unsplash.com/photos/pair-of-brown-leather-boots-beside-bet-Nv4QHkTVEaI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+const HeroTitle = styled.h1`
+  font-size: 4rem;
+  text-align: left;
+  margin-bottom: 1rem;
+  color: #f8f8f8;
+  z-index: 10;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+`;
+
+const HeroSub = styled.h2`
+  font-size: 2.5rem;
+  color: #f8f8f8;
+  margin-top: 1rem;
+  z-index: 10;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+`;
+
+const HeroTitleLink = styled(Link)`
+  text-decoration: none;
+
+  &:visited {
+    color: white;
+  }
+`;
 
 const HeroImage = styled.img`
   grid-column: 1;
@@ -44,6 +70,18 @@ const HeroImage = styled.img`
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+`;
+
+const HeroTextWrapper = styled.div`
+  grid-column: 1;
+  grid-row: 1;
+  margin-left: 10%;
+  margin-bottom: 20%;
+
+  z-index: 9;
+  justify-self: start;
+  align-self: center;
+  transition: none;
 `;
 
 const HeroCredit = styled.div`
@@ -67,10 +105,10 @@ const HeroLink = styled.a`
 `;
 
 const image1 = {
-  pageLink: "https://unsplash.com/@brookecagle",
-  photographer: "Brooke Cagle",
+  pageLink: "https://unsplash.com/@von_co",
+  photographer: "Ivana Cajina",
   imageLink:
-    "https://unsplash.com/photos/woman-wearing-red-long-sleeved-shirt-standing-near-white-painted-wall-z1B9f48F5dc",
+    "https://unsplash.com/photos/man-leaning-on-brown-wall-_7LbC5J-jw4",
   image: hero1,
 };
 
@@ -83,16 +121,15 @@ const image2 = {
 };
 
 const image3 = {
-  pageLink: "https://unsplash.com/@nordwood",
-  photographer: "NordWood Themes",
+  pageLink: "https://unsplash.com/@dayinmydreams",
+  photographer: "Kristina Petrick",
   imageLink:
-    "https://unsplash.com/photos/pair-of-brown-leather-boots-beside-bet-Nv4QHkTVEaI",
+    "https://unsplash.com/photos/woman-sitting-on-pathway-during-daytime-qmyebfKk3pw",
   image: hero3,
 };
 
 const Homepage = () => {
   const links = [image1, image2, image3];
-
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -129,6 +166,12 @@ const Homepage = () => {
             />
           </HeroImageWrapper>
         ))}
+        <HeroTextWrapper>
+          <HeroTitleLink to="shop">
+            <HeroTitle>Style Haven</HeroTitle>
+            <HeroSub>Where Fashion Meets You</HeroSub>
+          </HeroTitleLink>
+        </HeroTextWrapper>
       </Hero>
     </>
   );
