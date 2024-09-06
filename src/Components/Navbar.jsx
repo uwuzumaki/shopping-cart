@@ -49,7 +49,9 @@ const NavCartIcon = styled.div`
 const Navbar = () => {
   return (
     <NavContainer>
-      <NavTitle>Shopping</NavTitle>
+      <NavTitle>
+        <NavLink to="/">Style Haven</NavLink>
+      </NavTitle>
       <NavMenu>
         <NavItem>
           <NavLink to="/">Home</NavLink>
