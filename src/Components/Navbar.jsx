@@ -5,8 +5,8 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #333;
-  color: white;
+  background-color: #ebebeb;
+  color: #000000;
   height: 10vh;
   width: 100%;
 `;
@@ -36,7 +36,7 @@ const NavLink = styled(Link)`
   text-decoration: none;
 
   &:visited {
-    color: white;
+    color: #000000;
   }
 `;
 
