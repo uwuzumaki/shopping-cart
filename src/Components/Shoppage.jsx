@@ -22,10 +22,8 @@ const ListArea = styled.ul`
 `;
 
 const Item = styled.li`
-  padding: 5%;
   max-width: 80%;
-  margin: 2%;
-  height: 300px;
+  margin: 7%;
   max-height: 100%;
   list-style: none;
   background-color: white;
@@ -34,7 +32,7 @@ const Item = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 
 const TextTitle = styled.p`
@@ -69,7 +67,9 @@ const QuantityWrapper = styled.div`
   flex-direction: row;
 `;
 
-const QuantityButton = styled.button``;
+const QuantityButton = styled.button`
+  padding: 5px 10px;
+`;
 
 const Quantity = styled.input`
   background-color: white;
@@ -82,7 +82,7 @@ const Quantity = styled.input`
 
 const Shop = () => {
   const { store } = useContext(StoreDataContext);
-  const { setCart } = useContext(UserCartContext);
+  const { cart, setCart } = useContext(UserCartContext);
   const inputRefs = useRef([]);
   const buttonRefs = useRef([]);
   const submitRefs = useRef([]);
@@ -101,13 +101,32 @@ const Shop = () => {
 
   const addToCart = (index, item) => {
     const inputValue = inputRefs.current[index].value;
-    if (inputValue > 0) {
-      const product = {
-        quantity: inputValue,
-        id: item.id,
-      };
-      setCart(product);
+    let isUnique = true;
+
+    const product = {};
+    if (inputValue != 0) {
+      product.quantity = +inputValue;
+      product.id = item.id;
     }
+
+    if (cart.length === 0) {
+      setCart((old) => [...old, product]);
+    } else {
+      const newCart = cart.map((oldProducts) => {
+        if (item.id === oldProducts.id) {
+          console.log(oldProducts.quantity, +inputValue);
+          oldProducts.quantity = oldProducts.quantity + +inputValue;
+          isUnique = false;
+          return oldProducts;
+        } else {
+          return oldProducts;
+        }
+      });
+      if (isUnique) {
+        setCart([...newCart, product]);
+      }
+    }
+    console.log(cart, "123");
   };
 
   return (
