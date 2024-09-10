@@ -52,6 +52,7 @@ const NavCartIcon = styled.div`
   margin: 1rem 3rem 1rem 1rem;
   border: 1px solid black;
   border-radius: 25px;
+  cursor: pointer;
 
   display: flex;
 `;
@@ -89,7 +90,7 @@ const Navbar = () => {
           </NavCartIcon>
         </NavMenu>
       </NavContainer>
-      <Modal isOpen={isOpen} />
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };
