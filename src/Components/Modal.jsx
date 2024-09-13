@@ -1,6 +1,22 @@
 /* eslint-disable react/prop-types */
 import { createPortal } from "react-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const slideIn = keyframes`
+  from {
+    transform: translateX(100%)
+  } to {
+    transform: translateX(0%)
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateX(0%)
+  } to {
+    transform: translateX(100%);
+  }
+`;
 
 const ModalBase = styled.div`
   position: fixed;
@@ -10,6 +26,7 @@ const ModalBase = styled.div`
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
+  animation: ${({ isOpen }) => (isOpen ? slideIn : slideOut)} 0.3s forwards;
 `;
 
 const CartBase = styled.div`
@@ -27,7 +44,7 @@ const Modal = ({ isOpen, setIsOpen }) => {
   if (!isOpen) return null;
 
   const closeModal = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(false);
   };
 
   const propStop = (e) => {
@@ -36,8 +53,7 @@ const Modal = ({ isOpen, setIsOpen }) => {
 
   return createPortal(
     <>
-      <ModalBase onClick={closeModal}>
-        123
+      <ModalBase onClick={closeModal} isOpen={isOpen}>
         <CartBase onClick={(e) => propStop(e)}></CartBase>
       </ModalBase>
     </>,

@@ -82,7 +82,7 @@ const Navbar = () => {
           <NavItem>
             <NavLink to="/shop">Shop</NavLink>
           </NavItem>
-          <NavCartIcon onClick={() => setIsOpen(!isOpen)}>
+          <NavCartIcon onClick={() => setIsOpen(true)}>
             <IconWrapper>
               <FontAwesomeIcon icon={faBagShopping} />
             </IconWrapper>
