@@ -109,9 +109,9 @@ const Shop = () => {
       product.id = item.id;
     }
 
-    if (cart.length === 0) {
+    if (cart.length === 0 && inputValue != 0) {
       setCart((old) => [...old, product]);
-    } else {
+    } else if (inputValue != 0) {
       const newCart = cart.map((oldProducts) => {
         if (item.id === oldProducts.id) {
           console.log(oldProducts.quantity, +inputValue);

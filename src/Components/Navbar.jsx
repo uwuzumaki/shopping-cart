@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Modal from "./Modal";
+import { useState, useContext } from "react";
+import { UserCartContext } from "./ContextProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 
 const NavContainer = styled.nav`
   display: flex;
@@ -30,6 +35,7 @@ const NavMenu = styled.ul`
 
 const NavItem = styled.li`
   margin: 1rem;
+  font-size: 1.5rem;
 `;
 
 const NavLink = styled(Link)`
@@ -43,25 +49,49 @@ const NavLink = styled(Link)`
 const NavCartIcon = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
-  margin: 1rem;
+  margin: 1rem 3rem 1rem 1rem;
+  border: 1px solid black;
+  border-radius: 25px;
+  cursor: pointer;
+
+  display: flex;
+`;
+
+const IconWrapper = styled.div`
+  margin: 0.5rem;
+`;
+
+const CartNumber = styled.div`
+  margin: 0.5rem;
 `;
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const { cart } = useContext(UserCartContext);
+
   return (
-    <NavContainer>
-      <NavTitle>
-        <NavLink to="/">Style Haven</NavLink>
-      </NavTitle>
-      <NavMenu>
-        <NavItem>
-          <NavLink to="/">Home</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/shop">Shop</NavLink>
-        </NavItem>
-        <NavCartIcon>Placeholder</NavCartIcon>
-      </NavMenu>
-    </NavContainer>
+    <>
+      <NavContainer>
+        <NavTitle>
+          <NavLink to="/">Style Haven</NavLink>
+        </NavTitle>
+        <NavMenu>
+          <NavItem>
+            <NavLink to="/">Home</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/shop">Shop</NavLink>
+          </NavItem>
+          <NavCartIcon onClick={() => setIsOpen(true)}>
+            <IconWrapper>
+              <FontAwesomeIcon icon={faBagShopping} />
+            </IconWrapper>
+            <CartNumber>{cart.length}</CartNumber>
+          </NavCartIcon>
+        </NavMenu>
+      </NavContainer>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+    </>
   );
 };
 
