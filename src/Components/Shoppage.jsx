@@ -114,7 +114,6 @@ const Shop = () => {
     } else if (inputValue != 0) {
       const newCart = cart.map((oldProducts) => {
         if (item.id === oldProducts.id) {
-          console.log(oldProducts.quantity, +inputValue);
           oldProducts.quantity = oldProducts.quantity + +inputValue;
           isUnique = false;
           return oldProducts;
@@ -126,7 +125,6 @@ const Shop = () => {
         setCart([...newCart, product]);
       }
     }
-    console.log(cart, "123");
   };
 
   return (

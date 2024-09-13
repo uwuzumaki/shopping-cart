@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { useContext, useEffect } from "react";
+import { StoreDataContext, UserCartContext } from "./ContextProvider";
 import { createPortal } from "react-dom";
 import styled, { keyframes } from "styled-components";
 
@@ -26,7 +28,7 @@ const ModalBase = styled.div`
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
-  animation: ${({ isOpen }) => (isOpen ? slideIn : slideOut)} 0.3s forwards;
+  animation: ${({ $isOpen }) => ($isOpen ? slideIn : slideOut)} 0.3s forwards;
 `;
 
 const CartBase = styled.div`
@@ -38,9 +40,23 @@ const CartBase = styled.div`
   width: 30%;
   max-width: 450px;
   height: 100%;
+
+  display: flex;
+  flex-direction: column;
+`;
+
+const ListWrapper = styled.ul`
+  list-style: none;
+`;
+
+const ItemWrapper = styled.li`
+  background-color: black;
 `;
 
 const Modal = ({ isOpen, setIsOpen }) => {
+  const { store } = useContext(StoreDataContext);
+  const { cart } = useContext(UserCartContext);
+
   if (!isOpen) return null;
 
   const closeModal = () => {
@@ -53,8 +69,27 @@ const Modal = ({ isOpen, setIsOpen }) => {
 
   return createPortal(
     <>
-      <ModalBase onClick={closeModal} isOpen={isOpen}>
-        <CartBase onClick={(e) => propStop(e)}></CartBase>
+      <ModalBase onClick={closeModal} $isOpen={isOpen}>
+        <CartBase onClick={(e) => propStop(e)}>
+          <ListWrapper>
+            {cart.map((cartItem) => {
+              const matching = store.find((storeItem) =>
+                storeItem.id === cartItem.id ? storeItem : null
+              );
+              return matching ? (
+                <ItemWrapper key={matching.id}>
+                  {matching.title} {"\n"}
+                  {"\n"}
+                  {matching.price}
+                  {"\n"}
+                  {"\n"}
+                  {matching.price * cartItem.quantity}
+                  {"\n"}
+                </ItemWrapper>
+              ) : null;
+            })}
+          </ListWrapper>
+        </CartBase>
       </ModalBase>
     </>,
     document.getElementById("modal-root")

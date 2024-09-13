@@ -16,7 +16,6 @@ const ContextProvider = ({ children }) => {
           throw new Error(`HTTP Error: Status ${data.status}`);
         }
         const json = await data.json();
-        console.log(json);
         setStore(json);
       } catch (err) {
         console.log(err);
