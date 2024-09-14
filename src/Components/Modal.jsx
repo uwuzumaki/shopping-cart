@@ -116,14 +116,19 @@ const ItemBreak = styled.hr`
   background: linear-gradient(to right, transparent, black, transparent);
 `;
 
-const CartTotal = styled.div`
+const CartTotalWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: end;
+`;
 
+const CartTotal = styled.div`
   font-size: 2rem;
   margin: 2rem;
 `;
+
+const CheckoutButton = styled.button``;
 
 const Modal = ({ isOpen, setIsOpen }) => {
   const { store } = useContext(StoreDataContext);
@@ -149,9 +154,7 @@ const Modal = ({ isOpen, setIsOpen }) => {
   };
 
   const deleteButton = (id) => {
-    console.log(id);
     const newList = cart.filter((item) => item.id != id);
-    console.log(newList);
     setCart(newList);
   };
 
@@ -185,7 +188,12 @@ const Modal = ({ isOpen, setIsOpen }) => {
               ) : null;
             })}
           </ListWrapper>
-          <CartTotal>Total: ${total} </CartTotal>
+          <CartTotalWrapper>
+            <CartTotal>Total: ${total}</CartTotal>{" "}
+            <CheckoutButton onClick={() => console.log("NYI")}>
+              Checkout
+            </CheckoutButton>
+          </CartTotalWrapper>
         </CartBase>
       </ModalBase>
     </>,
