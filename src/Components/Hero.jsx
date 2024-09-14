@@ -107,6 +107,7 @@ const HeroLink = styled.a`
 const image1 = {
   pageLink: "https://unsplash.com/@von_co",
   photographer: "Ivana Cajina",
+  alt: "Man leaning on brown wall",
   imageLink:
     "https://unsplash.com/photos/man-leaning-on-brown-wall-_7LbC5J-jw4",
   image: hero1,
@@ -115,6 +116,7 @@ const image1 = {
 const image2 = {
   pageLink: "https://unsplash.com/@sadswim",
   photographer: "ian dooley",
+  alt: "Woman standing near pink wall",
   imageLink:
     "https://unsplash.com/photos/woman-standing-near-pink-concrete-wall-during-daytime-TT-ROxWj9nA",
   image: hero2,
@@ -123,6 +125,7 @@ const image2 = {
 const image3 = {
   pageLink: "https://unsplash.com/@dayinmydreams",
   photographer: "Kristina Petrick",
+  alt: "Woman sitting on a pathway",
   imageLink:
     "https://unsplash.com/photos/woman-sitting-on-pathway-during-daytime-qmyebfKk3pw",
   image: hero3,
@@ -162,6 +165,7 @@ const Hero = () => {
             <HeroImage
               key={index}
               src={link.image}
+              alt={link.alt}
               $isActive={index === currentImage}
             />
           </HeroImageWrapper>
