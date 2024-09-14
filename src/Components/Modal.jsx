@@ -58,15 +58,15 @@ const ItemWrapper = styled.li`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
+  max-height: 200px;
 
   margin: 5% 0;
-  padding: 5% 0;
 `;
 
 const ItemImage = styled.img`
   max-width: 200px;
   height: auto;
-  max-height: 200px;
+  max-height: 150px;
   margin: auto;
 
   grid-row: 1/5;
@@ -93,10 +93,21 @@ const ItemQuantity = styled.div`
   place-self: center start;
 `;
 
-const ItemTotal = styled.div`
+const TotalWrapper = styled.div`
   grid-row: 4/5;
   grid-column: 2/3;
   place-self: center start;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const TotalValue = styled.div``;
+
+const DeleteButton = styled.button`
+  margin-right: 100px;
 `;
 
 const ItemBreak = styled.hr`
@@ -105,11 +116,18 @@ const ItemBreak = styled.hr`
   background: linear-gradient(to right, transparent, black, transparent);
 `;
 
-const CartTotal = styled.div``;
+const CartTotal = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+
+  font-size: 2rem;
+  margin: 2rem;
+`;
 
 const Modal = ({ isOpen, setIsOpen }) => {
   const { store } = useContext(StoreDataContext);
-  const { cart } = useContext(UserCartContext);
+  const { cart, setCart } = useContext(UserCartContext);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -130,6 +148,13 @@ const Modal = ({ isOpen, setIsOpen }) => {
     e.stopPropagation();
   };
 
+  const deleteButton = (id) => {
+    console.log(id);
+    const newList = cart.filter((item) => item.id != id);
+    console.log(newList);
+    setCart(newList);
+  };
+
   return createPortal(
     <>
       <ModalBase onClick={closeModal} $isOpen={isOpen}>
@@ -146,9 +171,14 @@ const Modal = ({ isOpen, setIsOpen }) => {
                     <ItemName>{matching.title}</ItemName>
                     <ItemPrice>Price: ${matching.price}</ItemPrice>
                     <ItemQuantity>Quantity: {cartItem.quantity}</ItemQuantity>
-                    <ItemTotal>
-                      Total: ${matching.price * cartItem.quantity}
-                    </ItemTotal>
+                    <TotalWrapper>
+                      <TotalValue>
+                        Total: ${matching.price * cartItem.quantity}
+                      </TotalValue>
+                      <DeleteButton onClick={() => deleteButton(cartItem.id)}>
+                        Delete
+                      </DeleteButton>
+                    </TotalWrapper>
                   </ItemWrapper>
                   <ItemBreak />
                 </Fragment>
