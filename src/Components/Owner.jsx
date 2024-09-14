@@ -50,7 +50,7 @@ const Owner = () => {
   return (
     <Container>
       <ImageWrapper>
-        <MainImage src={img} />
+        <MainImage src={img} alt="Image of Michael" />
       </ImageWrapper>
 
       <TextWrapper>

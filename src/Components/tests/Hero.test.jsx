@@ -13,10 +13,14 @@ describe("hero section", () => {
         </MemoryRouter>
       </ContextProvider>
     );
-    expect(screen.getByAltText("Man leaning on brown wall")).toBeInTheDocument;
-    expect(screen.getByAltText("Woman standing near pink wall"))
-      .toBeInTheDocument;
-    expect(screen.getByAltText("Woman standing near pink wall"))
-      .toBeInTheDocument;
+    expect(
+      screen.getByAltText("Man leaning on brown wall")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByAltText("Woman standing near pink wall")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByAltText("Woman standing near pink wall")
+    ).toBeInTheDocument();
   });
 });
