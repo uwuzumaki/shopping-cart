@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext, Fragment } from "react";
+import { useContext, Fragment, useState, useEffect } from "react";
 import { StoreDataContext, UserCartContext } from "./ContextProvider";
 import { createPortal } from "react-dom";
 import styled, { keyframes } from "styled-components";
@@ -41,6 +41,7 @@ const CartBase = styled.div`
   min-width: 560px;
   max-width: 560px;
   height: 100%;
+  overflow-y: scroll;
 
   display: flex;
   flex-direction: column;
@@ -104,9 +105,20 @@ const ItemBreak = styled.hr`
   background: linear-gradient(to right, transparent, black, transparent);
 `;
 
+const CartTotal = styled.div``;
+
 const Modal = ({ isOpen, setIsOpen }) => {
   const { store } = useContext(StoreDataContext);
   const { cart } = useContext(UserCartContext);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const sumOfProducts = cart.reduce((sum, obj1) => {
+      const obj2 = store.find((storeItem) => storeItem.id == obj1.id);
+      return sum + obj1.quantity * obj2.price;
+    }, 0);
+    setTotal(sumOfProducts);
+  }, [cart, store]);
 
   if (!isOpen) return null;
 
@@ -143,6 +155,7 @@ const Modal = ({ isOpen, setIsOpen }) => {
               ) : null;
             })}
           </ListWrapper>
+          <CartTotal>Total: ${total} </CartTotal>
         </CartBase>
       </ModalBase>
     </>,
