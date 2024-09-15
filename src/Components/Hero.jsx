@@ -101,7 +101,7 @@ const HeroCredit = styled.div`
 `;
 
 const HeroLink = styled.a`
-  color: #4b72df;
+  color: #000000;
 `;
 
 const image1 = {
