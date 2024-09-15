@@ -46,6 +46,7 @@ const Description = styled.p`
   white-space: pre-wrap;
 `;
 
+// Displays a fake owner message
 const Owner = () => {
   return (
     <Container>

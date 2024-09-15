@@ -130,6 +130,8 @@ const CartTotal = styled.div`
 
 const CheckoutButton = styled.button``;
 
+// A modal that is displayed when the shopping cart button is pressed.
+// It shows a list of all items added to the cart, a total of the cost of all added items, and a checkout button (NYI)
 const Modal = ({ isOpen, setIsOpen }) => {
   const { store } = useContext(StoreDataContext);
   const { cart, setCart } = useContext(UserCartContext);

@@ -4,6 +4,7 @@ import { createContext, useState, useEffect } from "react";
 export const StoreDataContext = createContext(null);
 export const UserCartContext = createContext(null);
 
+// Calls an API, gets the data, stores it, and grants access to it across components through the use of context api.
 const ContextProvider = ({ children }) => {
   const [store, setStore] = useState([]);
   const [cart, setCart] = useState([]);

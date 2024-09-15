@@ -21,6 +21,7 @@ const BackLink = styled(Link)`
 
 const ErrorTitle = styled.h1``;
 
+// Displays an error page for anything not in the route. Has links leading back to home.
 const Error = () => {
   return (
     <ErrorContainer>

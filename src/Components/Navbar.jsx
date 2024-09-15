@@ -65,6 +65,7 @@ const CartNumber = styled.div`
   margin: 0.5rem;
 `;
 
+//Displays a navbar that allows for navigation between home page, shop page, and the modal for current shopping cart.
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { cart } = useContext(UserCartContext);

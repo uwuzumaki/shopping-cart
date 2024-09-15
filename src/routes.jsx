@@ -4,6 +4,7 @@ import Shop from "./Components/Shoppage";
 import Error from "./Components/Errorpage";
 import Navbar from "./Components/Navbar";
 
+// Routes for the app
 const routes = [
   {
     path: "/",

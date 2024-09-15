@@ -131,10 +131,12 @@ const image3 = {
   image: hero3,
 };
 
+// Displays a rotating hero image
 const Hero = () => {
   const links = [image1, image2, image3];
   const [currentImage, setCurrentImage] = useState(0);
 
+  // Rotates between 1 of 3 images
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((lastImage) => (lastImage + 1) % links.length);
