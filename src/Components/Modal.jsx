@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
 import { useContext, Fragment, useState, useEffect } from "react";
 import { StoreDataContext, UserCartContext } from "./ContextProvider";
 import { createPortal } from "react-dom";
 import styled, { keyframes } from "styled-components";
+import PropTypes from "prop-types";
 
 const slideIn = keyframes`
   from {
@@ -201,6 +201,11 @@ const Modal = ({ isOpen, setIsOpen }) => {
     </>,
     document.getElementById("modal-root")
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool,
+  setIsOpen: PropTypes.func,
 };
 
 export default Modal;

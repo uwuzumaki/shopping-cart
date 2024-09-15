@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 export const StoreDataContext = createContext(null);
 export const UserCartContext = createContext(null);
@@ -33,6 +33,10 @@ const ContextProvider = ({ children }) => {
       </UserCartContext.Provider>
     </StoreDataContext.Provider>
   );
+};
+
+ContextProvider.propTypes = {
+  children: PropTypes.node,
 };
 
 export default ContextProvider;
