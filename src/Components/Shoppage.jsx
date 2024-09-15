@@ -157,6 +157,7 @@ const Shop = () => {
                 +
               </QuantityButton>
               <QuantityButton
+                data-testid={item.id}
                 ref={(el) => (submitRefs.current[index] = el)}
                 onClick={() => addToCart(index, item)}
               >
