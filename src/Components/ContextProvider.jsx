@@ -26,7 +26,7 @@ const ContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <StoreDataContext.Provider value={{ store, setStore }}>
+    <StoreDataContext.Provider value={{ store }}>
       <UserCartContext.Provider value={{ cart, setCart }}>
         {children}
       </UserCartContext.Provider>

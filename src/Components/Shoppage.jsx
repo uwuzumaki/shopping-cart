@@ -131,10 +131,10 @@ const Shop = () => {
     <PageWrapper>
       <ListArea>
         {store.map((item, index) => (
-          <Item key={item.id}>
+          <Item key={item.id} data-testid="card">
             <TextTitle>{item.title}</TextTitle>
             <ImageWrapper>
-              <ProductImage src={item.image} />
+              <ProductImage src={item.image} alt="product image" />
             </ImageWrapper>
             <TextCost>${item.price}</TextCost>
             <QuantityWrapper>
